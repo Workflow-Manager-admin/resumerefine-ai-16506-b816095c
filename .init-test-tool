@@ -1,0 +1,4 @@
+{
+    "command": "npm run test",
+    "working_directory": "/home/kavia/workspace/code-generation/resumerefine-ai-16506-b816095c/resume_refine_ai"
+}

@@ -286,26 +286,38 @@ function App() {
               </select>
               <label style={{color:'#bbb', marginTop: 4, fontSize:"1em", marginBottom: 8}}>
                 <div>Resume File <span style={{color:"#FF8B4D", fontWeight:600}}>*</span></div>
-                <input 
-                  type="file" 
+                <input
+                  data-testid="resume-file-input"
+                  type="file"
                   accept=".pdf,.doc,.docx,.txt"
                   required
                   style={{
                     ...inputStyle(),
-                    padding: '8px 6px', 
-                    border: 'none', 
-                    background:'none', 
-                    boxShadow:'none', 
-                    color: '#ECECEC'
+                    padding: '8px 6px',
+                    border: 'none',
+                    background:'none',
+                    boxShadow:'none',
+                    color: '#ECECEC',
                   }}
-                  onChange={e=>{
-                    if (e.target.files.length > 0) {
-                      setResumeFile(e.target.files[0]);
+                  onClick={e => {
+                    // Reset the input so the same file can be selected again if needed
+                    e.target.value = null;
+                  }}
+                  onChange={e => {
+                    // Defensive: Ensure user can select a file (handle both single/none)
+                    const fileList = e.target.files;
+                    if (fileList && fileList.length > 0) {
+                      setResumeFile(fileList[0]);
                     } else {
                       setResumeFile(null);
                     }
                   }}
                 />
+                {resumeFile && (
+                  <span style={{display: "block", fontSize:".97em", color:"#aaa", marginTop:2}}>
+                    Selected: {resumeFile.name}
+                  </span>
+                )}
               </label>
               <button className="btn btn-large" 
                   style={{background:palette.kaviaOrange, fontWeight:600, marginTop:7}}

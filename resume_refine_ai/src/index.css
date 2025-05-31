@@ -3,6 +3,18 @@
   box-sizing: border-box;
 }
 
+input, select, textarea, button {
+  font-family: inherit;
+}
+
+@media(max-width: 760px) {
+  .container {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+}
+
+
 body {
   margin: 0;
   padding: 0;
